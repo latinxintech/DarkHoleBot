@@ -20,6 +20,7 @@ logger.addHandler(handler)
 
 
 def is_void(message) -> bool:
+    global channel_id
     logger.info(f'`void` called in channel with ID: {message.channel.id}')
     return False if not channel_id else message.channel.id == channel_id
 
