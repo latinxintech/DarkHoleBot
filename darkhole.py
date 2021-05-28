@@ -25,10 +25,6 @@ channel_id = os.getenv('CHANNEL_ID')
 def is_void(message) -> bool:
     logger.info(f'`void` called in channel with ID: {message.channel.id}')
     return False if not channel_id else message.channel.id == channel_id
-    # if channel_id:
-    #     return message.channel.id == channel_id  # Make sure the channel is what I need it to be.
-    # else:
-    #     return False
 
 
 @commands.command(name='void')
