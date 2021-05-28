@@ -56,7 +56,12 @@ if __name__ == '__main__':
     # Get authentication token
     token = os.getenv('AUTH_TOKEN')
     # Get channel ID
-    channel_id = os.getenv('CHANNEL_ID')
+    try:
+        channel_id = int(os.getenv('CHANNEL_ID'))
+    except ValueError:
+        logger.info('Expected `channel_id` to be an integer but got something else.')
+        logger.info('Setting `channel_id` equal to `None`. Please set a new channel_id with `>set`')
+        channel_id = None
     if not token:
         exit(f'Could not authenticate. Value of `token` is: {token}')
 
