@@ -29,7 +29,7 @@ def is_void(message) -> bool:
 
 @commands.command(name='void')
 async def void(ctx, num_messages: int = 1) -> None:
-    deleted_messages = await ctx.channel.purge(limit=num_messages, check=is_void)
+    deleted_messages = await ctx.channel.purge(limit=num_messages + 1, check=is_void)
     if not deleted_messages:  # If the list is empty
         logger.info('No messages to delete.')
         return None
@@ -37,7 +37,7 @@ async def void(ctx, num_messages: int = 1) -> None:
         with open('DarkHole.png', 'rb') as f:
             card = discord.File(f)
             await ctx.channel.send(
-                f'I activate **Dark Hole**! All {len(deleted_messages)} messages have been sent to the graveyard!',
+                f'I activate **Dark Hole**! All {len(deleted_messages) - 1} messages have been sent to the graveyard!',
                 file=card,
                 delete_after=60.0
             )
