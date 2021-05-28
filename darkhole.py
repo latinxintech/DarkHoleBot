@@ -18,9 +18,6 @@ handler = logging.FileHandler(
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
-# Get channel ID
-channel_id = os.getenv('CHANNEL_ID')
-
 
 def is_void(message) -> bool:
     logger.info(f'`void` called in channel with ID: {message.channel.id}')
@@ -55,7 +52,10 @@ if __name__ == '__main__':
         command_prefix='>',
         description='That does what it do!'
     )
+    # Get authentication token
     token = os.getenv('AUTH_TOKEN')
+    # Get channel ID
+    channel_id = os.getenv('CHANNEL_ID')
     if not token:
         exit(f'Could not authenticate. Value of `token` is: {token}')
 
